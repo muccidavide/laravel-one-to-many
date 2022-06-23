@@ -31,10 +31,10 @@
                 <td><img class="img-fluid" src="{{$post->cover_image}}" alt="cover of {{$post->title}}"></td>
                 <td>{{Str::limit($post->content,150)}}</td>
                 <td>
-                    @if (is_null($post->category->name))
+                    @if (is_null($post->category))
                     <p>Uncategorized</p>
                     @else
-                    {{$pots->category->name}}
+                    {{$post->category->name}}
                     @endif
 
                 </td>
