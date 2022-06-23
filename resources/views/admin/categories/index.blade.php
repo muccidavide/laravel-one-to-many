@@ -6,14 +6,14 @@
 @include('partials.session_message')
 @include('partials.errors')
 <div class="container">
-<h1 class="my-3">All Categories</h1>
+    <h1 class="my-3">All Categories</h1>
 
     <div class="row">
         <div class="col">
             <form action="" method="post" class="d-flex align-center">
                 @csrf
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="front-end" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <input name="name" type="text" class="form-control" placeholder="front-end" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit">Add</button>
                     </div>
@@ -46,17 +46,43 @@
                         <td>
 
                             {{$category->name}}
-                 
+
                         </td>
                         <td>{{$category->slug}}</td>
                         <td><span class="badge badge-dark">{{count($category->posts)}}</span></td>
                         <td>
-                            <button form="category-{{$category->id}}" type="submit" class="btn btn-primary">Update</button>
-                            <form action="{{route('admin.categories.destroy', $category->slug)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
+                            <button form="category-{{$category->id}}" type="submit" class="btn btn-primary btn-sm">Update</button>
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
+                                Delete
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="deleteCategoriId" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Delete Category</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Body
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button form="category-{{$category->id}}" type="submit" class="btn btn-primary">Update</button>
+                                            <form action="{{route('admin.categories.destroy', $category->slug)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     @empty
