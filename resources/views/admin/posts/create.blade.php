@@ -29,7 +29,7 @@ dd($content)
       <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
         <option value=""> Select Category:</option>
         @foreach($categories as $category)
-        <option value="{{$category->id}}">{{$category->name}}</option>
+        <option value="{{$category->id}}" {{ old($category->id) == $category->id ? 'selected' : '' }} >{{$category->name}}</option>
         @endforeach
       </select>
     </div>
