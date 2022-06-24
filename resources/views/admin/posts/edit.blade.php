@@ -2,6 +2,7 @@
 
 
 @section('content')
+
 <div class="container">
 <h2 class="py-4">Edit {{$post->title}}</h2>
 @include('partials.errors')
@@ -35,7 +36,14 @@
       <select class="form-control @error('category_id') is-invalid @enderror " name="category_id" id="category_id">
         <option value=""> Select Category:</option>
         @foreach($categories as $category)
-        <option value="{{$category->id}}" {{$category->id == old('category_id', $post->category->id)  ? 'selected' : ''}}>{{$category->name}}</option> // qui selezione categoria attuale 
+        
+        <option 
+        @if($post->category)
+        value="{{$category->id}}" 
+        {{$category->id == old('category_id', $post->category->id)  ? 'selected' : ''}}
+        @endif
+        >{{$category->name}}</option> // qui selezione categoria attuale 
+
         @endforeach
       </select> 
     </div>
