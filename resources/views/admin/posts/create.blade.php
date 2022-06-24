@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+dd($content)
 <div class="container">
   <h2 class="py-4">Create a new Post</h2>
   @include('partials.errors')

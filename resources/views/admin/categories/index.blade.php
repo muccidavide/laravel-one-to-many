@@ -54,31 +54,31 @@
                             <button form="category-{{$category->id}}" type="submit" class="btn btn-primary btn-sm">Update</button>
 
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete">
-                                Delete
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#delete-{{$category->id}}">
+                              Delete
                             </button>
-
+                            
                             <!-- Modal -->
-                            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="deleteCategoriId" aria-hidden="true">
+                            <div class="modal fade" id="delete-{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Delete Category</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            <h5 class="modal-title">Delete {{$category->name}}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                         </div>
                                         <div class="modal-body">
-                                            Body
+                                            Are you sure to delete {{{$category->name}}}
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button form="category-{{$category->id}}" type="submit" class="btn btn-primary">Update</button>
                                             <form action="{{route('admin.categories.destroy', $category->slug)}}" method="post">
-                                                @csrf
+                                                @csrf 
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button type="submit" class="btn btn-primary">Delete</button>
                                             </form>
+                                            
                                         </div>
                                     </div>
                                 </div>
